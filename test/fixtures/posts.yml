@@ -1,0 +1,9 @@
+one:
+  user: michael
+  title: MyString
+  content: MyString
+
+two:
+  user: inactive
+  title: MyString
+  content: MyString

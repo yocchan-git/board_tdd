@@ -1,0 +1,19 @@
+<header>
+    <div class="container">
+        <div class="header-title">
+            <a href="">掲示板アプリ</a>
+        </div>
+
+        <div class="header-nav">
+            <nav>
+                <li>ログイン</li>
+                <li>ログアウト</li>
+            </nav>
+        </div>
+    </div>
+</header>
+<% unless flash.empty? %>
+<div class="flash-body">
+    <p class="flash-content text-center"><%= flash[:notice] %></p>
+</div>
+<% end %>
