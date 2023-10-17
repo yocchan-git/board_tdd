@@ -1,7 +1,7 @@
 require "test_helper"
 
 # titleタグの表示が正しいかを検証する
-class HeaderTitleTest < ActionDispatch::IntegrationTest
+class HeadTitleTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:michael)

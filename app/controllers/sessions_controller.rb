@@ -16,5 +16,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    log_out
+    flash[:notice] = "ログアウトしました。"
+    redirect_to login_path, status: :see_other
   end
 end

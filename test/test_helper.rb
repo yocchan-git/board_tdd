@@ -15,6 +15,6 @@ class ActiveSupport::TestCase
 
   # テストユーザーとしてログインする
   def log_in_as(user)
-    session[:user_id] = user.id
+    post "/login", params:{email: user.email, password: 'password'}
   end
 end

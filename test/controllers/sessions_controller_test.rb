@@ -20,24 +20,29 @@ class LoginTest < SessionsControllerTest
     assert_redirected_to posts_path
     assert_equal session[:user_id], @user.id
   end
+
+  test "間違った認証情報でログインする" do
+    post "/login", params:{email: @user.email, password: 'foobar'}
+    assert_not flash.empty?
+    assert_response :unprocessable_entity
+    assert_template 'sessions/new'
+  end
 end
 
 # ログアウト関連のコントローラテスト
 class LogoutTest < SessionsControllerTest
   test "logoutに通信できるかどうか？" do
     delete "/logout"
-    assert_response :success
+    assert_response :see_other
   end
 
-  # ERROR:log_in_asメソッドでエラーが発生する
   test "logoutの処理が正しく行われているのか？" do
-    # post "/login", params:{email: @user.email, password: 'password'}
     log_in_as(@user)
     delete "/logout"
-    # TODO:　ログアウトの処理
-    assert session[:user_id].nil?
-    assert_not flash.empty?
     assert_redirected_to login_path
-    assert_nil @current_user
+    follow_redirect!
+    assert_not flash.empty? 
+    assert session[:user_id].nil?
+    assert @current_user.nil?
   end
 end
