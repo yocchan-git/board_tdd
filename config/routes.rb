@@ -12,5 +12,8 @@ Rails.application.routes.draw do
   post "comments/:id/update", to:"comments#update"
   delete "comments/:id", to:"comments#destroy"
 
+  post "likes/:post_id", to:"likes#create"
+  delete "likes/:id", to:"likes#destroy"
+
   resources :posts
 end
