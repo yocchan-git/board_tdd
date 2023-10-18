@@ -15,6 +15,20 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    # コメントの編集などはログインかつ自分のみ
+    def comment_only_login_user
+        if current_user
+            @comment = Comment.find(params[:id])
+            unless @current_user.id == @comment.user_id
+                flash[:notice] = "権限がありません。"
+                redirect_to posts_path
+            end
+        else
+            flash[:notice] = "権限がありません。"
+            redirect_to login_path
+        end
+    end
+
     # ログインしているかのチェック
     def can_login_user
         unless current_user

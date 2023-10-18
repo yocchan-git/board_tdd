@@ -3,7 +3,6 @@ require "test_helper"
 class PostTest < ActiveSupport::TestCase
   def setup
     @user = users(:michael)
-    # このコードは慣習的に正しくない
     @post = @user.posts.build(title: "サンプルポスト",content: "テストテストテスト")
   end
 end

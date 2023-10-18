@@ -8,7 +8,7 @@ class HeaderNavTest < ActionDispatch::IntegrationTest
 
   # ログアウト時のナビゲーションチェック
   test "ログアウト時はログイン+サインアップのテスト" do
-    get posts_path
+    get login_path
     assert_select "a[href=?]", login_path
     assert_select "a[href=?]", users_new_path
   end
